@@ -17,6 +17,7 @@
 		<!base : 웹 페이지의 기본 url지정>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"><! 부트스트랩에서 아이콘을 지원 해주는 소스 
 		<script type="text/javascript" src="js/search.js" defer></script>
+		<script type="text/javascript" src="js/basic_test.js" defor></script>
 	</head>
 	<body>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
@@ -78,24 +79,42 @@
 		</div>
 		<br>
 		<p style ="text-align:center">
-			검색:<input type ="text" name="search" size="55" value =""><button id="search_btn" type= "button">
-			검색</button><br>
-		
+		<!검색:<input type ="text" name="search" size="55" value =""><button id="search_btn" type= "button">
+		<!검색</button><br>
 		</p>
+		<form action="https://www.google.co.kr/search" method="GET" target="_blank">
+            <div class="d-flex justify-content-center">
+                <mx-auto>
+                    <input name="query" type="text" class="form-control-lg" placeholder="검색어 입력" aria-label="search" aria-describedby="search_btn" id="serch_txt">
+                </mx-auto>
+                <button class="btn btn-success" type="submit" id="search_btn">검색</button>
+           </div>
+        </form>
+	
+			
+		
+		
 		
 		<br><br><br><br><br>
-		<table style="margin:auto;" border="1" width="500">
-			<caption align ="top">인기 검색어 </caption><! 표의 제목>
-			<tbody>
-				<tr><td width="50" bgcolor="green">영화</td><td bgcolor="blue" width="80">아저씨</td><td bgcolor="blue" width="80">아저씨</td><td width="80">어머니</td><td width="80">헬머니</td><td width="100">할부지</td></tr>
-				<tr bgcolor ="red"><td>음악</td><td>KPOP</td><td>JPOP</td><td>ROCK</td><td>ROOK2</td><td rowspan="2">EUROBEAT</td></tr>
-				<tr bgcolor="red"><td colspan="2">게임</td><td>LOL</td><td>WOW</td><td>SUDDEN</td></tr>
+		<div class ="w-auto p-3" style ="backgroind-color: #;">
+			
+		<table class="table table-striped table-bordered table-hover">
+		<!<table class ="table table-dark table-hover">>
+			
+			<caption align ="top">현재 검색어 <p id="search_massage">
+				
+				</p></caption><! 표의 제목>
+			<tbody class ="table-group-divider">
+				<tr><td class ="table-primary" width="50" bgcolor="green"><b>영화</b></td><td bgcolor="blue" width="80">아저씨</td><td bgcolor="blue" width="80">아저씨</td><td width="80">어머니</td><td width="80">헬머니</td><td width="100">할부지</td></tr>
+				<tr class ="table-info"><td class="table-secondary" width="50"><b>음악</b></td><td>KPOP</td><td>JPOP</td><td>ROCK</td><td>ROOK2</td><td rowspan="2">EUROBEAT</td></tr>
+				<tr class= table-warning><td class ="table-success" width="50"><b>게임</b></td><td>LOL</td><td>WOW</td><td colspan ="2">SUDDEN</td></tr>
 				<tr><td colspan ="6">외부사이트 링크</td></tr>
-				<tr><td colspan="2" ><a href="https://www.naver.com/" target="_blank"> 네이버</a></td><td bgcolor="yellow" colspan="2"><a href="https://www.daum.net/" target="_blank">다음</a></td><td bgcolor="purple" colspan="2"><a href="https://www.nate.com/" target="_blank"><font color ="white">네이트</font></a></td></tr>
+				<tr><td colspan="2" ><a href="https://www.naver.com/" target="_blank"> 네이버</a></td><td bgcolor="yellow" colspan="2"><a href="https://www.daum.net/" target="_blank">다음</a></td><td bgcolor="purple" colspan="2"><a href="https://www.nate.com/" target="_blank">네이트</a></td></tr>
 				
 				
 			</tbody>
 		</table>
+		</div>
 		<br><br><br><br><br><br><hr>
 		
 		
