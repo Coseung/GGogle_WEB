@@ -17,17 +17,60 @@ function login(){
             setCookie("id", id.value, 0); //날짜를 0 - 쿠키 삭제
     }
 	
-    if(id.value.length === 0 || password.value.length === 0){
+    if(id.value.length === 0 || password.value.length === 0 ){
         alert("아이디와 비밀번호를 모두 입력해주세요.");
-    }else{
+    }else if(login_check()){
+		
 	session_set(); // 세션 생성
 
-    form.submit();
+	login_count();	
+    
     }
 }
+
 function logout(){
+	logout_count();
+	session_del();
     location.href='../index.html';
 }
+
+function login_check(){
+	let form = document.querySelector("#form_main");
+    let id = document.querySelector("#floatingInput").value;
+    let password = document.querySelector("#floatingPassword").value;
+    let idcheck =/^[a-zA-Z0-9!@#$%^&*()]{4,12}$/;
+	let passcheck =/^[a-zA-Z0-9]{6,16}$/;
+	
+	if(idcheck.test(id)== false){
+		alert("아이디를 다시 입력해주세요");
+		return false;
+		
+	}else if(passcheck.test(password)== false){
+		alert("비밀번호를 다시 입력해주세요");
+		return false;
+	}
+	else{
+		form.submit();
+		return true;
+	}
+	
+}
+
+function login_count() {
+  var loginCount = parseInt(getCookie("login_cnt")); // 기존 로그인 횟수 가져오기
+  loginCount = isNaN(loginCount) ? 0 : loginCount; // 기존 로그인 횟수가 없는 경우 0으로 초기화
+  loginCount++; // 로그인 횟수 증가
+  setCookie("login_cnt", loginCount, 30); // 로그인 횟수를 쿠키에 저장 (유효기간: 30일)
+}
+
+// 로그아웃 횟수 증가 함수 - logout_count()
+function logout_count() {
+  var logoutCount = parseInt(getCookie("logout_cnt")); // 기존 로그아웃 횟수 가져오기
+  logoutCount = isNaN(logoutCount) ? 0 : logoutCount; // 기존 로그아웃 횟수가 없는 경우 0으로 초기화
+  logoutCount++; // 로그아웃 횟수 증가
+  setCookie("logout_cnt", logoutCount, 30); // 로그아웃 횟수를 쿠키에 저장 (유효기간: 30일)
+}
+
 function get_id(){
 	    if(true){
         decrypt_text();
@@ -57,52 +100,9 @@ alert(getParameters('id') + '님 방갑습니다!'); // 메시지 창 출력
 
 
 
-function setCookie(name, value, expiredays) {
-        var date = new Date();
-        date.setDate(date.getDate() + expiredays);
-        document.cookie = escape(name) + "=" + escape(value) + "; expires=" + date.toUTCString() + "SameSite=None; Secure";        
-    }
-
-function getCookie(name) {
-        var cookie = document.cookie;
-        console.log("쿠키를 요청합니다.");
-        if (cookie != "") {
-            var cookie_array = cookie.split("; ");
-            for ( var index in cookie_array) {
-                var cookie_name = cookie_array[index].split("=");
-                
-                if (cookie_name[0] == "id") {
-                    return cookie_name[1];
-                }
-            }
-        }
-        return ;
-}
-function closePopup() {
-        if (document.getElementById('check_popup').value) {
-            setCookie("id", "N", 1);
-            console.log("쿠키를 설정합니다.");
-            self.close();
-        }
-    }
-
-function deleteCookie(cookieName){
-    var expireDate = new Date();
-    expireDate.setDate(expireDate.getDate() - 1);
-    document.cookie = cookieName + "= " + "; expires=" + expireDate.toGMTString();
-}
 
 
-function init(){ // 로그인 폼에 쿠키에서 가져온 아이디 입력
-    let id = document.querySelector("#floatingInput");
-    let check = document.querySelector("#idSaveCheck");
-    let get_id = getCookie("id");
-    
-    if(get_id) { 
-    id.value = get_id; 
-    check.checked = true; 
-    }
-}
+
 
 
 
@@ -113,6 +113,11 @@ function addJavascript(jsname) { // 자바스크립트 외부 연동
 	s.setAttribute('src',jsname);
 	th.appendChild(s);
 }
+
+
+
+
 addJavascript('/js/security.js'); // 암복호화 함수
 addJavascript('/js/session.js'); // 세션 함수
 addJavascript('/js/cookie.js'); // 쿠키 함수
+
