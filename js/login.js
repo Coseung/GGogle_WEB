@@ -23,9 +23,10 @@ function login(){
 		
 	session_set(); // 세션 생성
 
-	login_count();	
+	}
     
-    }
+	
+	
 }
 
 function logout(){
@@ -38,20 +39,26 @@ function login_check(){
 	let form = document.querySelector("#form_main");
     let id = document.querySelector("#floatingInput").value;
     let password = document.querySelector("#floatingPassword").value;
-    let idcheck =/^[a-zA-Z0-9!@#$%^&*()]{4,12}$/;
-	let passcheck =/^[a-zA-Z0-9]{6,16}$/;
+    let idcheck =/^[a-zA-Z0-9!@#$%^&*()]{4,}$/;
+	let passcheck =/^[a-zA-Z0-9]{6,}$/;
 	
 	if(idcheck.test(id)== false){
 		alert("아이디를 다시 입력해주세요");
+		login_countx();
 		return false;
 		
 	}else if(passcheck.test(password)== false){
 		alert("비밀번호를 다시 입력해주세요");
+		login_countx();
 		return false;
 	}
 	else{
+		if(login_countx()){
+			alert("4분동안 로그인 차단");
+		}else{
 		form.submit();
 		return true;
+		}
 	}
 	
 }
@@ -71,7 +78,28 @@ function logout_count() {
   setCookie("logout_cnt", logoutCount, 30); // 로그아웃 횟수를 쿠키에 저장 (유효기간: 30일)
 }
 
+function login_countx() {
+    var loginCountx = parseInt(getCookie("login_cntx"));
+    loginCountx = isNaN(loginCountx) ? 0 : loginCountx;
+    loginCountx++;
+    setCookie("login_cntx", loginCountx, 30);
+    if (loginCountx >= 4) {
+        setTimeout(login_stop, 4*60*1000);
+        return true;
+    }
+}
+
+function login_stop(){
+    alert("로그인 가능.");
+    setCookie("login_cntx", 0, 1);
+}
+
+
 function get_id(){
+	setTimeout(logout, 5*60*1000);
+	alert(" 5분 후 로그아웃 됩니다 ");
+	
+	
 	    if(true){
         decrypt_text();
     }

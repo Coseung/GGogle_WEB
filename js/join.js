@@ -66,6 +66,6 @@ function addJavascript(jsname) { // 자바스크립트 외부 연동
 }
 
 
-
+addJavascript('/js/cookie.js');
 addJavascript('/js/session.js'); // 세션 함수
 addJavascript('/js/security.js'); // 암복호화 함수
