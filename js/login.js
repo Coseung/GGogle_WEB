@@ -64,25 +64,25 @@ function login_check(){
 }
 
 function login_count() {
-  var loginCount = parseInt(getCookie("login_cnt")); // 기존 로그인 횟수 가져오기
+  var loginCount = parseInt(getCookie("logincnt")); // 기존 로그인 횟수 가져오기
   loginCount = isNaN(loginCount) ? 0 : loginCount; // 기존 로그인 횟수가 없는 경우 0으로 초기화
   loginCount++; // 로그인 횟수 증가
-  setCookie("login_cnt", loginCount, 30); // 로그인 횟수를 쿠키에 저장 (유효기간: 30일)
+  setCookie("logincnt", loginCount, 30); // 로그인 횟수를 쿠키에 저장 (유효기간: 30일)
 }
 
 // 로그아웃 횟수 증가 함수 - logout_count()
 function logout_count() {
-  var logoutCount = parseInt(getCookie("logout_cnt")); // 기존 로그아웃 횟수 가져오기
+  var logoutCount = parseInt(getCookie("logoutcnt")); // 기존 로그아웃 횟수 가져오기
   logoutCount = isNaN(logoutCount) ? 0 : logoutCount; // 기존 로그아웃 횟수가 없는 경우 0으로 초기화
   logoutCount++; // 로그아웃 횟수 증가
-  setCookie("logout_cnt", logoutCount, 30); // 로그아웃 횟수를 쿠키에 저장 (유효기간: 30일)
+  setCookie("logoutcnt", logoutCount, 30); // 로그아웃 횟수를 쿠키에 저장 (유효기간: 30일)
 }
 
 function login_countx() {
-    var loginCountx = parseInt(getCookie("login_cntx"));
+    var loginCountx = parseInt(getCookie("logincntx"));
     loginCountx = isNaN(loginCountx) ? 0 : loginCountx;
     loginCountx++;
-    setCookie("login_cntx", loginCountx, 30);
+    setCookie("logincntx", loginCountx, 30);
     if (loginCountx >= 4) {
         setTimeout(login_stop, 4*60*1000);
         return true;
@@ -91,7 +91,7 @@ function login_countx() {
 
 function login_stop(){
     alert("로그인 가능.");
-    setCookie("login_cntx", 0, 1);
+    setCookie("logincntx", 0, 1);
 }
 
 

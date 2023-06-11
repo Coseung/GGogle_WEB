@@ -3,7 +3,8 @@ document.getElementById("search_btn").addEventListener('click', search_message);
 var search_array=[]; // 빈 배열 – 전역 변수
 
 
-function search_message(){
+function search_message(){ 
+	let search_str = document.querySelector("#search_txt");
 	let Fword_str ="개새끼";
 	let Fword2_str ="씨발";
 	let Fword3_str ="병신";
@@ -19,8 +20,8 @@ function search_message(){
 		alert("이쁘고 고운말을 사용합시다.");
 	}
     
-    let search_str = document.querySelector("#search_txt");
-    if(search_str.value.length === 0){
+   
+    else if(search_str.value.length === 0){
        alert("검색어가 비었습니다. 입력해주세요"); 
     }
     else{
@@ -42,3 +43,4 @@ function search_message(){
 	
 	
 }
+

@@ -14,7 +14,7 @@ function decodeByAES256(key, data){
         mode: CryptoJS.mode.CBC
     });
     return cipher.toString(CryptoJS.enc.Utf8);
-};
+}
 
 function encrypt_text(password){
     const k = "key"; // 클라이언트 키
@@ -29,6 +29,9 @@ function decrypt_text(){
     const k = "key"; // 서버의 키
     const rk = k.padEnd(32, " "); // AES256은 key 길이가 32
     const eb = session_get();
+	//const c = session_joinget();
+	//const ab = this.decodeByAES256(rk,c);
     const b = this.decodeByAES256(rk, eb);
-    console.log(b); 
+	console.log(b);
+    //console.log(ab); 
 }
