@@ -56,6 +56,7 @@ function login_check(){
 		if(login_countx() == false){
 			alert("로그인이 되지않습니다");
 		}else{
+		login_count();
 		form.submit();
 		return true;
 		}
