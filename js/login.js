@@ -39,22 +39,22 @@ function login_check(){
 	let form = document.querySelector("#form_main");
     let id = document.querySelector("#floatingInput").value;
     let password = document.querySelector("#floatingPassword").value;
-    let idcheck =/^[a-zA-Z0-9!@#$%^&*()]{4,}$/;
-	let passcheck =/^[a-zA-Z0-9]{6,}$/;
+    let idcheck =/^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*()-=_+])[A-Za-z\d!@#$%^&*()-=_+]{5,}$/;
+	let passcheck =/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 	
 	if(idcheck.test(id)== false){
-		alert("아이디를 다시 입력해주세요");
+		alert("아이디를 다시 입력해주세요 영어 5글자이상, 특수문자1개이상, 숫자1개이상");
 		login_countx();
 		return false;
 		
 	}else if(passcheck.test(password)== false){
-		alert("비밀번호를 다시 입력해주세요");
+		alert("비밀번호를 다시 입력해주세요 영어 8글자이상, 숫자 1이상");
 		login_countx();
 		return false;
 	}
 	else{
-		if(login_countx()){
-			alert("4분동안 로그인 차단");
+		if(login_countx() == false){
+			alert("로그인이 되지않습니다");
 		}else{
 		form.submit();
 		return true;
@@ -84,9 +84,11 @@ function login_countx() {
     loginCountx++;
     setCookie("logincntx", loginCountx, 30);
     if (loginCountx >= 4) {
-        setTimeout(login_stop, 4*60*1000);
-        return true;
+        setTimeout(login_stop, 5*1000);
+        alert("4분동안 로그인 차단");
+		return false;
     }
+	
 }
 
 function login_stop(){
@@ -96,6 +98,7 @@ function login_stop(){
 
 
 function get_id(){
+	setCookie("logincntx", 0, 1);
 	setTimeout(logout, 5*60*1000);
 	alert(" 5분 후 로그아웃 됩니다 ");
 	
