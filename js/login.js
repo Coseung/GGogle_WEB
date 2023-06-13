@@ -63,6 +63,11 @@ function login_check(){
 	
 }
 
+function login_stop(){
+    alert("로그인 가능.");
+    setCookie("logincntx", 0, 1);
+}
+
 function login_count() {
   var loginCount = parseInt(getCookie("logincnt")); // 기존 로그인 횟수 가져오기
   loginCount = isNaN(loginCount) ? 0 : loginCount; // 기존 로그인 횟수가 없는 경우 0으로 초기화
@@ -84,17 +89,13 @@ function login_countx() {
     loginCountx++;
     setCookie("logincntx", loginCountx, 30);
     if (loginCountx >= 4) {
-        setTimeout(login_stop, 5*1000);
+        setTimeout(login_stop, 4*60*1000);
         alert("4분동안 로그인 차단");
 		return false;
     }
 	
 }
 
-function login_stop(){
-    alert("로그인 가능.");
-    setCookie("logincntx", 0, 1);
-}
 
 
 function get_id(){
