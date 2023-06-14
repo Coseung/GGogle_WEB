@@ -19,7 +19,7 @@ function(err, data) {
     alert('예상치 못한 오류 발생.' + err);
   } else {
     alert(`현재
-      온도는 ${parseInt(data.main.temp)-273}°
+      온도는 ${parseInt(data.main.temp)-283}°
       풍속은 ${data.wind.speed}m/s
       습도는 ${data.main.humidity}%
 입니다.

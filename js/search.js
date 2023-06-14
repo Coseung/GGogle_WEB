@@ -1,6 +1,6 @@
 document.getElementById("search_btn").addEventListener('click', search_message);
 
-var search_array=[]; // 빈 배열 – 전역 변수
+var search_array=[]; 
 
 
 function search_message(){ 
